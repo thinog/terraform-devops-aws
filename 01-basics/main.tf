@@ -5,7 +5,7 @@ provider "aws" {
 resource "aws_s3_bucket" "bucket" {
   bucket = "my-tf-test-bucket-20201107"
   acl    = "private"
-  tags = var.s3_tags
+  tags   = var.s3_tags
 }
 
 resource "aws_s3_bucket_object" "object" {
@@ -16,10 +16,10 @@ resource "aws_s3_bucket_object" "object" {
 }
 
 resource "aws_instance" "web" {
-  ami            = var.ec2_free_tier_ami
-  instance_type  = var.ec2_instance_type
+  ami           = var.ec2_free_tier_ami
+  instance_type = var.ec2_instance_type
   #ipv6_addresses = var.ec2_ips
-  tags           = var.ec2_tags
+  tags = var.ec2_tags
 }
 
 output "bucket" {
