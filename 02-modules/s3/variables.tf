@@ -24,3 +24,7 @@ variable "bucket_tags" {
   type    = map
   default = {}
 }
+
+variable "force_destroy" {
+  default = false
+}

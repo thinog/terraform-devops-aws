@@ -5,7 +5,7 @@ Infraestrutura AWS criada com Terraform, a partir do curso DevOps: AWS com Terra
 
 ## Comandos utilizados via CLI
 
-```terraform init```
+```terraform init [-backend=true] [-backend-config='key=value]```
 
 ```terraform show```
 
@@ -15,9 +15,9 @@ Infraestrutura AWS criada com Terraform, a partir do curso DevOps: AWS com Terra
 
 ```terraform destroy```
 
-```terraform tained <object>```
+```terraform taint <object>```
 
-```terraform untained <object>```
+```terraform untaint <object>```
 
 ```terraform console```
 
