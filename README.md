@@ -28,3 +28,5 @@ Infraestrutura AWS criada com Terraform, a partir do curso DevOps: AWS com Terra
 ```terraform import <resource> <object_name>```
 
 ```terraform graph```
+
+```terraform output <output_key>```

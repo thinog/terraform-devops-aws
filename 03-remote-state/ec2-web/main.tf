@@ -5,7 +5,7 @@ provider "aws" {
 terraform {
   required_version = ">= 0.13.5"
   backend "s3" {
-    ### passed by CLI
+    ### provided by CLI
     ### terraform init -backend=true -backend-config='region=us-east-1' -backend-config='bucket=tf-remote-state-thinog' -backend-config='key=dev/ec2/web.tfstate'
     # bucket = var.backend_bucket_name
     # key = "${var.env}/ec2/web.tfstate"
