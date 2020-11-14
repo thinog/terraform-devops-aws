@@ -8,17 +8,18 @@ locals {
 
 resource "aws_instance" "web" {
   ami = var.ami
-  instance_type = var.instance_type
+  instance_type = var.instance_type  
   key_name = "thinog"
 
   provisioner "file" {
     source = "file.log"
     destination = "/tmp/tf-log.log"
+    on_failure = continue
 
     connection {
       type = "ssh"
       user = "ec2-user"
-      timeout = "1m"
+      timeout = "5m"
       private_key = local.file
       host = self.public_ip
     }
@@ -33,6 +34,8 @@ resource "aws_instance" "web" {
       "sudo chkconfig httpd on",
       "sleep 5"
     ]
+
+    on_failure = continue
 
     connection {
       type = "ssh"
@@ -50,6 +53,6 @@ resource "null_resource" "null" {
   ]
 
   provisioner "local-exec" {
-    command = "echo ${aws_instance.web.private_ip} >> private_ip.txt; echo ${aws_instance.web.public_ip} >> public_ip.txt;"
+    command = "echo ${aws_instance.web.private_ip} > private_ip.txt"
   }
 }

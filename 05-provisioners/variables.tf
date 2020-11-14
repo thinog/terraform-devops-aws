@@ -3,7 +3,7 @@ variable "region" {
 }
 
 variable "ami" {
-  default     = "ami-0947d2ba12ee1ff75"
+  default     = "ami-00ddb0e5626798373"
   description = "Amazon Linux 2 AMI"
 }
 
