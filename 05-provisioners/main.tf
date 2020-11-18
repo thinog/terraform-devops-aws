@@ -7,21 +7,21 @@ locals {
 }
 
 resource "aws_instance" "web" {
-  ami = var.ami
-  instance_type = var.instance_type  
-  key_name = "thinog"
+  ami           = var.ami
+  instance_type = var.instance_type
+  key_name      = "thinog"
 
   provisioner "file" {
-    source = "file.log"
+    source      = "file.log"
     destination = "/tmp/tf-log.log"
-    on_failure = continue
+    on_failure  = continue
 
     connection {
-      type = "ssh"
-      user = "ec2-user"
-      timeout = "5m"
+      type        = "ssh"
+      user        = "ec2-user"
+      timeout     = "5m"
       private_key = local.file
-      host = self.public_ip
+      host        = self.public_ip
     }
   }
 
@@ -38,11 +38,11 @@ resource "aws_instance" "web" {
     on_failure = continue
 
     connection {
-      type = "ssh"
-      user = "ec2-user"
-      timeout = "1m"
+      type        = "ssh"
+      user        = "ec2-user"
+      timeout     = "1m"
       private_key = local.file
-      host = self.public_ip
+      host        = self.public_ip
     }
   }
 }

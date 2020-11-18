@@ -36,7 +36,7 @@ data "archive_file" "json" {
 
 
 module "s3_bucket" {
-  depends_on = [ data.archive_file.json ]
+  depends_on    = [data.archive_file.json]
   source        = "../02-modules/s3"
   bucket_name   = "my-bucket-${random_id.bucket.hex}"
   force_destroy = true

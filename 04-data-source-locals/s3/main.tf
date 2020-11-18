@@ -6,7 +6,7 @@ data "terraform_remote_state" "web" {
   backend = "s3"
   config = {
     bucket = "tf-remote-state-thinog"
-    key = "dev/ec2/ec2.tfstate"
+    key    = "dev/ec2/ec2.tfstate"
     region = "us-east-1"
   }
 }
@@ -21,11 +21,11 @@ locals {
 }
 
 module "s3_bucket" {
-  source = "../../02-modules/s3"
-  bucket_name = "my-bucket-${random_id.bucket.hex}"
+  source        = "../../02-modules/s3"
+  bucket_name   = "my-bucket-${random_id.bucket.hex}"
   force_destroy = true
   bucket_tags = {
-    Env = var.env
+    Env  = var.env
     Name = "Terraform remote state bucket"
   }
   create_object = true
