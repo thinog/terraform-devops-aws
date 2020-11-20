@@ -1,0 +1,1 @@
+Não foram criados recursos do Route53 e Certificate Manager por questões de custo. Acesso direto via URL do CloudFront.

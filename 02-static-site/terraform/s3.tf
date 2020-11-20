@@ -21,10 +21,10 @@ resource "aws_s3_bucket" "site" {
 
 resource "aws_s3_bucket" "redirect" {
   bucket = "www.${var.domain}"
-  acl = "public-read"
+  acl    = "public-read"
 
   website {
-    redirect_all_requests_to = "http://${aws_s3_bucket.site.website_endpoint}"
+    redirect_all_requests_to = aws_s3_bucket.site.website_endpoint
   }
 }
 
@@ -33,9 +33,9 @@ resource "null_resource" "sites_files" {
     react_build = filemd5("../website/build/index.html")
   }
 
-  provisioner "local-exec" {    
+  provisioner "local-exec" {
     command = "aws s3 sync ..\\website\\build\\. s3://${var.domain}"
   }
 
-  depends_on = [ aws_s3_bucket.site ]
+  depends_on = [aws_s3_bucket.site]
 }
