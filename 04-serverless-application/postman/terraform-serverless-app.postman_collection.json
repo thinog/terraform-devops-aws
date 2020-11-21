@@ -1,0 +1,326 @@
+{
+	"info": {
+		"_postman_id": "56f5eb7e-1065-4f9b-adb8-75e7771e64da",
+		"name": "Terraform Serverless Application",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Cognito Login",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "b17b763e-11b4-4bd8-9ccd-d113b629f53e",
+						"exec": [
+							"let body = JSON.parse(responseBody);\r",
+							"pm.environment.set(\"cognito_jwt\", body.access_token);"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "password",
+							"value": "{{cognito_pass}}",
+							"type": "string"
+						},
+						{
+							"key": "username",
+							"value": "{{cognito_user}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/x-www-form-urlencoded",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "https://todos-api-15233517848861811414.auth.us-east-1.amazoncognito.com/oauth2/token?grant_type=client_credentials",
+					"protocol": "https",
+					"host": [
+						"todos-api-15233517848861811414",
+						"auth",
+						"us-east-1",
+						"amazoncognito",
+						"com"
+					],
+					"path": [
+						"oauth2",
+						"token"
+					],
+					"query": [
+						{
+							"key": "grant_type",
+							"value": "client_credentials"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get to-do list",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"id": "3a112cd2-c6fa-465f-906a-a89aaa4cbc82",
+						"exec": [
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{cognito_jwt}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://w8htsat6lk.execute-api.us-east-1.amazonaws.com/dev/todos",
+					"protocol": "https",
+					"host": [
+						"w8htsat6lk",
+						"execute-api",
+						"us-east-1",
+						"amazonaws",
+						"com"
+					],
+					"path": [
+						"dev",
+						"todos"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Create to-do item",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"id": "1c2fd84e-d3fb-4264-ad58-2de7eb85b275",
+						"exec": [
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{cognito_jwt}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"Done\": \"0\",\r\n    \"Task\": \"Learn AWS\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://w8htsat6lk.execute-api.us-east-1.amazonaws.com/dev/todos",
+					"protocol": "https",
+					"host": [
+						"w8htsat6lk",
+						"execute-api",
+						"us-east-1",
+						"amazonaws",
+						"com"
+					],
+					"path": [
+						"dev",
+						"todos"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Mark to-do item as done",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"id": "96291c49-ea51-41e9-bafe-84e4badb8ca4",
+						"exec": [
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{cognito_jwt}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"Done\": \"1\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://w8htsat6lk.execute-api.us-east-1.amazonaws.com/dev/todos?todoid=6795073d-7149-80ae-bf3e-43c7859fdadb",
+					"protocol": "https",
+					"host": [
+						"w8htsat6lk",
+						"execute-api",
+						"us-east-1",
+						"amazonaws",
+						"com"
+					],
+					"path": [
+						"dev",
+						"todos"
+					],
+					"query": [
+						{
+							"key": "todoid",
+							"value": "6795073d-7149-80ae-bf3e-43c7859fdadb"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Delete to-do item",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"id": "e503088b-c550-4963-9c68-07829288eb60",
+						"exec": [
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{cognito_jwt}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "DELETE",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"Done\": \"0\",\r\n    \"Task\": \"Learning Terraform\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://w8htsat6lk.execute-api.us-east-1.amazonaws.com/dev/todos?todoid=6795073d-7149-80ae-bf3e-43c7859fdadb",
+					"protocol": "https",
+					"host": [
+						"w8htsat6lk",
+						"execute-api",
+						"us-east-1",
+						"amazonaws",
+						"com"
+					],
+					"path": [
+						"dev",
+						"todos"
+					],
+					"query": [
+						{
+							"key": "todoid",
+							"value": "6795073d-7149-80ae-bf3e-43c7859fdadb"
+						}
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"id": "2fc464be-99e0-4845-8de5-1caaa600cd83",
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"id": "eb7f31b9-6603-4f83-8c56-8fb0c05b1254",
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"id": "a51e1547-cbed-434d-aa0d-5159d25947e2",
+			"key": "cognito_user",
+			"value": ""
+		},
+		{
+			"id": "1b573c10-0c96-47eb-a52f-757c31cfce16",
+			"key": "cognito_pass",
+			"value": ""
+		}
+	],
+	"protocolProfileBehavior": {}
+}
