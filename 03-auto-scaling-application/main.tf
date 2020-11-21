@@ -120,9 +120,9 @@ resource "aws_security_group" "web" {
   }
 
   ingress {
-    from_port       = -1
-    to_port         = -1
-    protocol        = "icmp"
+    from_port   = -1
+    to_port     = -1
+    protocol    = "icmp"
     cidr_blocks = [aws_vpc.vpc.cidr_block]
   }
 
@@ -139,7 +139,7 @@ resource "aws_security_group" "web" {
 }
 
 resource "aws_security_group" "db" {
-  depends_on = [ aws_security_group.web ]
+  depends_on  = [aws_security_group.web]
   name        = "db"
   description = "Allow incoming database connections"
   vpc_id      = aws_vpc.vpc.id
