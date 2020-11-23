@@ -23,7 +23,7 @@ docker run -p 8080:3000 <image_id>
 ## Deploy automatizado
 Foram criados scripts de deploy/destroy da stack, tanto em bash (Linux) quanto batch (Windows). Estão no diretório [terraform/deploy](terraform/deploy).
 
-Para executar deploy de dentro da pasta do terraform:
+**Para executar deploy de dentro da pasta do terraform:**
 ```bash
 deploy/bash/deploy.sh <env>
 ```
@@ -31,8 +31,9 @@ ou
 ```bash
 deploy\batch\deploy.bat <env>
 ```
+<br>
 
-Para executar destroy de dentro da pasta do terraform:
+**Para executar destroy de dentro da pasta do terraform:**
 ```bash
 deploy/bash/destroy.sh <env>
 ```
@@ -40,6 +41,8 @@ ou
 ```bash
 deploy\batch\destroy.bat <env>
 ```
+
+<br>
 
 Sendo **\<env\>** um parâmetro opcional, podendo receber o valor **prod** para stack de produção, ou nada para a stack de dev.
 
