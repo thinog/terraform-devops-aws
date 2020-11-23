@@ -1,5 +1,8 @@
 # Serverless Applications
 
+Arquitetura proposta:
+![architecture](application_architecture.png)
+
 Para testar estrutura via Postman, importe a collection **postman/terraform-serverless-app.postman_collection.json** para seu Postman, vá na *collection > edit > variables*, e preencha as seguintes variáveis:
 - **cognito_user**: Client Id do Cognito. Equivalente ao output *cg_client_id* da stack do Terraform.
 - **cognito_pass**: Client Secret do Cognito. Equivalente ao output *cg_client_secret* da stack do Terraform.

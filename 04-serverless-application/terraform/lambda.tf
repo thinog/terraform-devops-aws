@@ -1,6 +1,6 @@
 locals {
   layer_name = "terraform_layer.zip"
-  layer_path = "${path.module}/lambdas-layers/nodejs"
+  layer_path = "${path.module}/../lambdas-layers/nodejs"
 }
 
 resource "null_resource" "build_lambda_layers" {
@@ -26,8 +26,8 @@ resource "aws_lambda_layer_version" "this" {
 
 data "archive_file" "dynamodb" {
   type        = "zip"
-  source_file = "${path.module}/lambdas/dynamodb/index.js"
-  output_path = "${path.module}/lambdas/dynamodb/index.js.zip"
+  source_file = "${path.module}/../lambdas/dynamodb/index.js"
+  output_path = "${path.module}/../lambdas/dynamodb/index.js.zip"
 }
 
 resource "aws_lambda_function" "dynamodb" {
@@ -68,8 +68,8 @@ resource "aws_lambda_permission" "dynamodb_sns" {
 
 data "archive_file" "s3" {
   type        = "zip"
-  source_file = "${path.module}/lambdas/s3/index.js"
-  output_path = "${path.module}/lambdas/s3/index.js.zip"
+  source_file = "${path.module}/../lambdas/s3/index.js"
+  output_path = "${path.module}/../lambdas/s3/index.js.zip"
 }
 
 resource "aws_lambda_function" "s3" {

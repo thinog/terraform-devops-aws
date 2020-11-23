@@ -1,7 +1,7 @@
-# terraform-devops-aws
-Infraestrutura AWS criada com Terraform, a partir do curso DevOps: AWS com Terraform Automatizando sua infraestrutura
+# DevOps: AWS com Terraform
+Infraestrutura AWS criada com Terraform, a partir do curso [DevOps: AWS com Terraform Automatizando sua infraestrutura][udemy-course]
 
-<br/>
+Curso realizado utilizando a versão 0.13.5 do Terraform CLI.
 
 ## Comandos utilizados via CLI
 
@@ -34,3 +34,10 @@ Infraestrutura AWS criada com Terraform, a partir do curso DevOps: AWS com Terra
 ```terraform validate```
 
 ```terraform workspace <command> <args>```
+
+---
+
+Para detalhes sobre a ferramenta de CLI e seus comandos, olhe a [documentação][cli-doc].
+
+[udemy-course]: https://www.udemy.com/course/aws-com-terraform/
+[cli-doc]: https://www.terraform.io/docs/commands/index.html

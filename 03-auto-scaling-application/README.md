@@ -1,5 +1,8 @@
 # Autoscaling Application
 
+Arquitetura proposta:
+![architecture](application_architecture.png)
+
 Para validar, basta acessar as duas instâncias geradas inicialmente via SSH (dá pra fazer pelo Console da AWS) e deixar o seguinte comando executando:
 ```bash
 stress --cpu 1 --timeout 300
