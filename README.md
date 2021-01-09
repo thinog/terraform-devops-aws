@@ -13,7 +13,7 @@ Curso realizado utilizando a versão 0.13.5 do Terraform CLI.
 
 ```terraform apply [-var 'variable=value'] [-var-file='file'] [-auto-approve]```
 
-```terraform destroy```
+```terraform destroy [-target <object_to_destroy>]```
 
 ```terraform taint <object>```
 
@@ -34,6 +34,8 @@ Curso realizado utilizando a versão 0.13.5 do Terraform CLI.
 ```terraform validate```
 
 ```terraform workspace <command> <args>```
+
+```terraform refresh```
 
 ---
 
